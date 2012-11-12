@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+{{welcome}}
+<form action="/" method="post">{% csrf_token %}
+<div style="display:None">
+{{ form.as_table }}
+</div>
+<ul>
+你选择的方案如下：
+<input type=hidden name=confirm value=1 />
+<li>所在区域:{{ confirm_form.region}}</li>
+<li>配置类型:{{ confirm_form.flavor}}</li>
+<li>操作系统:{{ confirm_form.image}}</li>
+<li>网络带宽:{{ confirm_form.bandwith}}</li>
+<li>主机数量:{{ confirm_form.host_count}}</li>
+<li>付款方式:{{ confirm_form.payment}}</li>
+<li>应付保证金:{{ confirm_form.payables}}</li>
+</ul>
+<input type=hidden id="order_confirm_user_payables" name=user_payables value="{{ confirm_form.payables}}" />
+用户账户余额：<input type=text id="order_confirm_user_accont" name=user_account value="{{ confirm_form.account }}" /> <a href="/user/recharge">请充值</a>
+<br>
+<input type="submit" id="order_confirm_submit" value="确认提交" />
+</form>
+{% endblock %}

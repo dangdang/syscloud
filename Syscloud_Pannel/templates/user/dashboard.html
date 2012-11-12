@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block body %}
+{{welcome}}
+<ul>
+功能列表
+<li>我的订单</li>
+</ul>
+<div id="order_list">
+<table>
+{% for order in order_list %}
+    <tr><td>{{ order.region }}</td><td>{{ order }}</td></tr>
+{% empty %}
+   <tr><td>Sorry, no athlete in this list!<tr><td>
+{% endfor %}
+</table>
+{% endblock %}
